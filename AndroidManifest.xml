@@ -8,6 +8,7 @@
         android:targetSdkVersion="10" />
     <supports-screens android:anyDensity="true" android:normalScreens="true" android:smallScreens="true" android:resizeable="true" android:largeScreens="true"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"

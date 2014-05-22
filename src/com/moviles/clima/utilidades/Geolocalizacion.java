@@ -1,18 +1,16 @@
 package com.moviles.clima.utilidades;
 
-import com.moviles.clima.actividades.Principal;
-
 import android.location.Location;
 import android.location.LocationListener;
-import android.net.MailTo;
 import android.os.Bundle;
-import android.widget.Toast;
+
+import com.moviles.clima.actividades.Principal;
 
 public class Geolocalizacion implements LocationListener{
 
-	private Principal principal;
-	private Double latitud;
-	private Double longitud;
+	Principal principal;
+	Double latitud;
+	Double longitud;
 	
 	@Override
 	public void onLocationChanged(Location loc) {
@@ -38,29 +36,5 @@ public class Geolocalizacion implements LocationListener{
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Double getLatitud() {
-		return latitud;
-	}
-
-	public void setLatitud(Double latitud) {
-		this.latitud = latitud;
-	}
-
-	public Double getLongitud() {
-		return longitud;
-	}
-
-	public void setLongitud(Double longitud) {
-		this.longitud = longitud;
-	}
-	
-	public Principal getPrincipal() {
-		return principal;
-	}
-
-	public void setPrincipal(Principal principal) {
-		this.principal = principal;
 	}
 }
