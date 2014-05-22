@@ -1,21 +1,13 @@
 package com.moviles.clima.actividades;
 
-import java.util.Date;
-
 import android.app.Activity;
-import android.content.Context;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moviles.clima.R;
 import com.moviles.clima.tareas.OpenWeatherTask;
-import com.moviles.clima.utilidades.Geolocalizacion;
-import com.moviles.clima.utilidades.OpenWeather;
 
 public class Principal extends Activity {
 	
