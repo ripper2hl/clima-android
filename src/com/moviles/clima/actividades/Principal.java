@@ -21,8 +21,9 @@ public class Principal extends Activity {
 		TextView descripcion = (TextView)findViewById(R.id.descripcion);
 		TextView temperaturas = (TextView)findViewById(R.id.temperaturas);
 		fecha.setText("Viernes");
-		new OpenWeatherTask().execute("guadalupe");
 		Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
+		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+		opWeatherTask.execute("guadalupe");
 //		LocationManager milocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 //		LocationListener milocListener = new Geolocalizacion();
 //		milocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 5000, 10, milocListener);
