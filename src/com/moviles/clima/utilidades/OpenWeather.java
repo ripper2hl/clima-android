@@ -25,7 +25,7 @@ public class OpenWeather{
 			// Instanciamos el cliente
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			// Vamos por el json
-			String url = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon;
+			String url = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon+"&lang=sp";
 			HttpGet httpGet = new HttpGet(url);
 			response = httpClient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
@@ -66,7 +66,7 @@ public class OpenWeather{
 			// Instanciamos el cliente
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			// Vamos por el json
-			String url = "http://api.openweathermap.org/data/2.5/weather?q="+ ciudad;
+			String url = "http://api.openweathermap.org/data/2.5/weather?q="+ ciudad + "&lang=sp";
 			HttpGet httpGet = new HttpGet(url);
 			response = httpClient.execute(httpGet);
 			HttpEntity entity = response.getEntity();

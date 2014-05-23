@@ -16,10 +16,6 @@ public class Principal extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_principal);
 		TextView fecha = (TextView)findViewById(R.id.fecha);
-		TextView temperatura = (TextView)findViewById(R.id.temperatura);
-		TextView ciudad = (TextView)findViewById(R.id.ciudad);
-		TextView descripcion = (TextView)findViewById(R.id.descripcion);
-		TextView temperaturas = (TextView)findViewById(R.id.temperaturas);
 		fecha.setText("Viernes");
 		Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
 		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
