@@ -1,61 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/morado" >
 
     <TextView
         android:id="@+id/fecha"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_x="200dp"
-        android:layout_y="14dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="right"
+        android:text="Domingo"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/blanco"
+        android:textSize="30dp"
+        android:padding="2dp"
+        android:shadowColor="@color/TransparentGrey" 
+        android:shadowDx="3"
+        android:shadowDy="-3" 
+        android:shadowRadius="1.5" />
 
     <ImageView
         android:id="@+id/imagenClima"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_x="73dp"
-        android:layout_y="60dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/ciudad"
-        android:layout_width="wrap_content"
+        android:id="@+id/temperatura"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_x="113dp"
-        android:layout_y="290dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:gravity="center"
+        android:text="26ᵒC"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/blanco"
+        android:textSize="36dp"
+        android:padding="2dp"
+        android:shadowColor="@color/TransparentGrey" 
+        android:shadowDx="3"
+        android:shadowDy="-3" 
+        android:shadowRadius="1.5" />
 
     <TextView
-        android:id="@+id/temperaturas"
-        android:layout_width="wrap_content"
+        android:id="@+id/ciudad"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_x="112dp"
-        android:layout_y="360dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:gravity="center"
+        android:text="San Nicolas de los Garza"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/blanco"
+        android:textSize="30dp"
+        android:padding="2dp"
+        android:shadowColor="@color/TransparentGrey" 
+        android:shadowDx="3"
+        android:shadowDy="-3" 
+        android:shadowRadius="1.5" />
 
     <TextView
         android:id="@+id/descripcion"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_x="112dp"
-        android:layout_y="328dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:gravity="center"
+        android:text="algo de nuves"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/blanco"
+        android:textSize="30dp"
+        android:padding="2dp"
+        android:shadowColor="@color/TransparentGrey" 
+        android:shadowDx="3"
+        android:shadowDy="-3" 
+        android:shadowRadius="1.5" />
 
     <TextView
-        android:id="@+id/temperatura"
-        android:layout_width="wrap_content"
+        android:id="@+id/temperaturas"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_x="107dp"
-        android:layout_y="247dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:text="26ᵒC/26ᵒC"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/blanco"
+        android:textSize="30dp"
+        android:padding="2dp"
+        android:shadowColor="@color/TransparentGrey" 
+        android:shadowDx="3"
+        android:shadowDy="-3" 
+        android:shadowRadius="1.5" />
+
 
     <TextView
         android:id="@+id/textLati"
@@ -73,4 +104,5 @@
         android:layout_y="52dp"
         android:text="TextView" />
 
-</AbsoluteLayout>
+
+</LinearLayout>

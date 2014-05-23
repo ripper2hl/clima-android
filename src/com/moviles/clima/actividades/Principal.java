@@ -7,8 +7,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.moviles.clima.R;
 import com.moviles.clima.tareas.OpenWeatherTask;
@@ -21,14 +22,17 @@ public class Principal extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_principal);
 	    fecha = (TextView)findViewById(R.id.fecha);
 		lati = (TextView)findViewById(R.id.textLati);
 		longi = (TextView)findViewById(R.id.textLongi);
 		fecha.setText("Viernes");
-		Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
 		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
 		opWeatherTask.execute("guadalupe");//Ejecutamos toda la clase
+		ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
+		imageView.setImageResource(R.drawable.despejado);
 		double ubic[]=getGPS();//Sacomos las coordenadas
 		lati.setText(String.valueOf(ubic[0]));
 	    longi.setText(String.valueOf(ubic[1]));
@@ -48,6 +52,7 @@ public class Principal extends Activity {
 	       //longi.setText(String.valueOf(location.getLongitude()));
 	       location.getLongitude();
 	       return  new  double []{location.getLatitude(),location.getLongitude()};
+
 	}
 	
 	
