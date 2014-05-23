@@ -26,7 +26,7 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 	}
 	
 	@Override
-    protected void onPreExecute() {
+    protected void onPreExecute() {//Primero en ejecucion
 		 super.onPreExecute();
 		 
 	        pDialog = new ProgressDialog(context.get());
@@ -37,14 +37,14 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
     }
 	
 	@Override
-	protected String[] doInBackground(String... params) {
+	protected String[] doInBackground(String... params) { //Segundo en ejecucuion
 		JSONObject respuesta = null;
 		String resultados[] = new String[5];
 		try {
 			String ciudad = params[0].toString();
-			OpenWeather openWeather = new OpenWeather();
-			Conversion conversion = new Conversion();
-			respuesta = openWeather.getData(ciudad);
+			OpenWeather openWeather = new OpenWeather();//Instanciamos OpenWeather
+			Conversion conversion = new Conversion();//Convertimos de K a C
+			respuesta = openWeather.getData(ciudad);//Mandamos la ciudad para que nos retorne el clima
 			Log.i("Respuesta",respuesta.toString());
 			JSONObject datosPrincipales = null;
 			String temperatura = null;
@@ -83,7 +83,7 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 	}
 	
 	@Override
-	protected void onPostExecute(String[] result) {
+	protected void onPostExecute(String[] result) {//Tercero en ejecucuion
 		super.onPostExecute(result);
 		Principal principal = context.get();
 		String temperatura = result[0];

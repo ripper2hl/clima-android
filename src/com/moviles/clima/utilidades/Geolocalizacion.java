@@ -12,29 +12,31 @@ public class Geolocalizacion implements LocationListener{
 	Double latitud;
 	Double longitud;
 	
+	
+	
 	@Override
-	public void onLocationChanged(Location loc) {
+	public void onLocationChanged(Location loc) {//Se ejecuta al detectar cambio de coordenadas
 		loc.getLatitude();
 	    loc.getLongitude();
 	    latitud = loc.getLatitude();
 	    longitud = loc.getLongitude();
-	    this.principal.setLocation(loc);
+	    //this.principal.setLocation(loc);
 	}
 
 	@Override
-	public void onProviderDisabled(String provider) {
+	public void onProviderDisabled(String provider) {//GPS desactivado
 		// TODO 
 	}
 
 	@Override
-	public void onProviderEnabled(String provider) {
+	public void onProviderEnabled(String provider) {//GPS activado
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
+	public void onStatusChanged(String provider, int status, Bundle extras) {//Detecta cambio de estatus del proveedor
+		// TODO Auto-generated method stub									// como fuera de servicio etc.
 		
 	}
 }

@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class OpenWeather{
 
-	public JSONObject getData(Double lat, Double lon) {
+	public JSONObject getData(Double lat, Double lon) {//Traemos datos por latitud y longitud
 		int status = 0;
 		String result = null;
 		InputStream inputStream = null;
@@ -56,7 +56,9 @@ public class OpenWeather{
 		return jsonObject;
 	}
 	
-	public JSONObject getData(String ciudad) {
+	
+	
+	public JSONObject getData(String ciudad) {//Traemos datos por ciudad
 		int status = 0;
 		String result = null;
 		InputStream inputStream = null;

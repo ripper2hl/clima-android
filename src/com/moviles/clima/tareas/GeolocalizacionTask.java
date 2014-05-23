@@ -8,10 +8,11 @@ public class GeolocalizacionTask extends AsyncTask<String, String, String> {
 
 	@Override
 	protected String doInBackground(String... params) {
-		Geolocalizacion geolocalizacion = new Geolocalizacion();
+		Geolocalizacion geoloc = new Geolocalizacion();
+		//geoloc.onLocationChanged(loc);
 		return null;
 	}
 	
-	//Esta es una prueba para ver si se comitio
+	
 
 }

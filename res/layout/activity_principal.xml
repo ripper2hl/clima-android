@@ -57,4 +57,20 @@
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <TextView
+        android:id="@+id/textLati"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="36dp"
+        android:layout_y="25dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textLongi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="37dp"
+        android:layout_y="52dp"
+        android:text="TextView" />
+
 </AbsoluteLayout>
