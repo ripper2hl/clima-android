@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 import android.os.Build;
@@ -55,37 +56,39 @@ public class Principal extends Activity {
 		setContentView(R.layout.main);
 		
 		try{
-	        vf = (ViewFlipper) findViewById(R.id.viewFlipper);
-	        
-	        vf.setOnTouchListener(new ListenerTouchViewFlipper());
+		    vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+		    
+		    vf.setOnTouchListener(new ListenerTouchViewFlipper());
 		    fecha = (TextView)findViewById(R.id.fecha);
-			lati = (TextView)findViewById(R.id.textLati);
-			longi = (TextView)findViewById(R.id.textLongi);
-			fecha.setText("Viernes");
-			//Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
+		    lati = (TextView)findViewById(R.id.textLati);
+		    longi = (TextView)findViewById(R.id.textLongi);
+		    fecha.setText("Viernes");
+		    //Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
 		    editText = (EditText)findViewById(R.id.ingresaCiudad);
-			//OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-			//opWeatherTask.execute("toronto");//Ejecutamos toda la clase
-			ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
-			imageView.setImageResource(R.drawable.despejado);
-			
+		    //OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+		    //opWeatherTask.execute("toronto");//Ejecutamos toda la clase
+		    ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
+		    imageView.setImageResource(R.drawable.despejado);
+		    
 		    if(editText.getText().toString().matches("")){
 		    	Double ubic[]=getGPS();//Sacomos las coordenadas
-				lati.setText(String.valueOf(ubic[0]));
-			    longi.setText(String.valueOf(ubic[1]));
-			    OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-				opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase
-			    
+			lati.setText(String.valueOf(ubic[0]));
+			longi.setText(String.valueOf(ubic[1]));
+			OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+			opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase
+			
 		    }
 		}catch(Exception ex){
-			Toast.makeText(getApplicationContext(),"Algo malo paso", Toast.LENGTH_SHORT).show();
+		    Toast.makeText(getApplicationContext(),"Algo malo paso", Toast.LENGTH_SHORT).show();
 		}	
 	}
-	
-	public void getClimaUbic(View view){
+    
+    public void getClimaUbic(View view){
 		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
 		opWeatherTask.execute(editText.getText().toString());//Ejecutamos toda la clase
-		vf.showNext();
+		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+	    inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+	    vf.showNext();
 	}
 	
 	public Double[] getGPS(){
@@ -99,7 +102,6 @@ public class Principal extends Activity {
 	       //longi.setText(String.valueOf(location.getLongitude()));
 	       location.getLongitude();
 	       return  new  Double []{location.getLatitude(),location.getLongitude()};
-
 	}
 	
 	
@@ -135,7 +137,6 @@ public class Principal extends Activity {
  
             return false;
         }
- 
     }
  
     private Animation inFromRightAnimation() {
@@ -143,12 +144,9 @@ public class Principal extends Activity {
         Animation inFromRight = new TranslateAnimation(
         Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
         Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f );
- 
         inFromRight.setDuration(500);
         inFromRight.setInterpolator(new AccelerateInterpolator());
- 
         return inFromRight;
- 
     }
  
     private Animation outToLeftAnimation() {
@@ -182,8 +180,5 @@ public class Principal extends Activity {
         outtoRight.setDuration(500);
         outtoRight.setInterpolator(new AccelerateInterpolator());
         return outtoRight;
-    }
-
-	
-		
+    }	
 }
