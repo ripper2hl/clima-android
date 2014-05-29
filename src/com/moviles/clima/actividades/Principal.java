@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -32,8 +33,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 import android.os.Build;
-import com.moviles.clima.R;
 
+import com.moviles.clima.R;
 import com.moviles.clima.R;
 //import com.moviles.clima.actividades.ViewflipperBlogActivity.ListenerTouchViewFlipper;
 import com.moviles.clima.tareas.OpenWeatherTask;
@@ -59,8 +60,10 @@ public class Principal extends Activity {
 		longi = (TextView)findViewById(R.id.textLongi);
 		fecha.setText("Viernes");
 		//Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
+		EditText editText = (EditText)findViewById(R.id.ingresaCiudad);
+		editText.setText("puto");
 		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-		opWeatherTask.execute("guadalupe");//Ejecutamos toda la clase
+		opWeatherTask.execute("toronto");//Ejecutamos toda la clase
 		ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
 		imageView.setImageResource(R.drawable.despejado);
 		double ubic[]=getGPS();//Sacomos las coordenadas
