@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Ingresa tu ciudad" >
+        android:text="" >
 
         <requestFocus />
     </EditText>
@@ -19,6 +19,7 @@
         android:id="@+id/button1"
         android:layout_width="94dp"
         android:layout_height="wrap_content"
-        android:text="Buscar" />
+        android:text="Buscar"
+        android:onClick="getClimaUbic" />
  
 </LinearLayout>

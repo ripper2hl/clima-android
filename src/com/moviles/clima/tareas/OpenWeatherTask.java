@@ -43,12 +43,20 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 		JSONObject respuesta = null;
 		String resultados[] = new String[7];
 		try {
-			String ciudad = params[0].toString();
+			
 
 			OpenWeather openWeather = new OpenWeather(R.drawable.despejado, R.drawable.electrica, R.drawable.granizo, R.drawable.llovizna, R.drawable.lluvia, R.drawable.niebla, R.drawable.nublado);//Instanciamos OpenWeather
 			Conversion conversion = new Conversion();//Convertimos de K a C
 			Dia dia = new Dia();
-			respuesta = openWeather.getData(ciudad);//Mandamos la ciudad para que nos retorne el clima
+			
+			 if(params[1] != null){
+				Double lati=Double.valueOf(params[0]);
+				Double longi=Double.valueOf(params[1]);
+				respuesta = openWeather.getData(lati,longi);//Mandamos las cordenadas para que nos retorne el clima
+				}else{
+					String ciudad = params[0].toString();
+					respuesta = openWeather.getData(ciudad);//Mandamos la ciudad para que nos retorne el clima
+				}
 			Log.i("Respuesta",respuesta.toString());
 			JSONObject datosPrincipales = null;
 			String temperatura = null;

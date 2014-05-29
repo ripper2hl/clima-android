@@ -46,6 +46,7 @@ public class Principal extends Activity {
 	private TextView fecha;
 	public float init_x;
     private ViewFlipper vf;
+    private EditText editText;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,22 +61,32 @@ public class Principal extends Activity {
 		longi = (TextView)findViewById(R.id.textLongi);
 		fecha.setText("Viernes");
 		//Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
-		EditText editText = (EditText)findViewById(R.id.ingresaCiudad);
-		editText.setText("puto");
-		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-		opWeatherTask.execute("toronto");//Ejecutamos toda la clase
+	    editText = (EditText)findViewById(R.id.ingresaCiudad);
+		//OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+		//opWeatherTask.execute("toronto");//Ejecutamos toda la clase
 		ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
 		imageView.setImageResource(R.drawable.despejado);
-		double ubic[]=getGPS();//Sacomos las coordenadas
-		lati.setText(String.valueOf(ubic[0]));
-	    longi.setText(String.valueOf(ubic[1]));
-	
+		
+	    if(editText.getText().toString().matches("")){
+	    	Double ubic[]=getGPS();//Sacomos las coordenadas
+			lati.setText(String.valueOf(ubic[0]));
+		    longi.setText(String.valueOf(ubic[1]));
+		    OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+			opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase
+		    
+	    }
 	
 		
 	
 	}
 	
-	public double[] getGPS(){
+	public void getClimaUbic(View view){
+		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+		opWeatherTask.execute(editText.getText().toString());//Ejecutamos toda la clase
+		vf.showNext();
+	}
+	
+	public Double[] getGPS(){
 		LocationManager milocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 	       Criteria crit = new Criteria();
 	       String provider = milocManager.getBestProvider(crit, true);
@@ -85,7 +96,7 @@ public class Principal extends Activity {
 	       //lati.setText(String.valueOf(location.getLatitude()));
 	       //longi.setText(String.valueOf(location.getLongitude()));
 	       location.getLongitude();
-	       return  new  double []{location.getLatitude(),location.getLongitude()};
+	       return  new  Double []{location.getLatitude(),location.getLongitude()};
 
 	}
 	
