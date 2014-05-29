@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moviles.clima.R;
@@ -40,11 +41,11 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 	@Override
 	protected String[] doInBackground(String... params) { //Segundo en ejecucuion
 		JSONObject respuesta = null;
-		String resultados[] = new String[6];
+		String resultados[] = new String[7];
 		try {
 			String ciudad = params[0].toString();
 
-			OpenWeather openWeather = new OpenWeather();//Instanciamos OpenWeather
+			OpenWeather openWeather = new OpenWeather(R.drawable.despejado, R.drawable.electrica, R.drawable.granizo, R.drawable.llovizna, R.drawable.lluvia, R.drawable.niebla, R.drawable.nublado);//Instanciamos OpenWeather
 			Conversion conversion = new Conversion();//Convertimos de K a C
 			Dia dia = new Dia();
 			respuesta = openWeather.getData(ciudad);//Mandamos la ciudad para que nos retorne el clima
@@ -76,6 +77,7 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 				 resultados[3] = tMax.toString();
 				 resultados[4] = tMin.toString();
 				 resultados[5] = dia.getDia();
+				 resultados[6] = openWeather.getImagen(desc);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -96,18 +98,21 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 		String tempMax = result[3];
 		String tempMin = result[4];
 		String dia = result[5];
+		Integer imagen = Integer.parseInt(result[6]);
 		 if (principal != null && !principal.isFinishing()) {
 			 TextView temperaturaVw = (TextView) principal.findViewById(R.id.temperatura);
 			 TextView ciudadVw = (TextView) principal.findViewById(R.id.ciudad);
 			 TextView descripcionVw = (TextView) principal.findViewById(R.id.descripcion);
 			 TextView temperaturasVw = (TextView) principal.findViewById(R.id.temperaturas);
 			 TextView fechaVw = (TextView) principal.findViewById(R.id.fecha);
+			 ImageView imagenVw = (ImageView) principal.findViewById(R.id.imagenClima);
 			 try {
 				 temperaturaVw.setText(temperatura.toString() + " ᵒC");
 				 ciudadVw.setText(ciudad);
 				 descripcionVw.setText(descripcion);
 				 temperaturasVw.setText(tempMax + " ᵒC/" + tempMin + " ᵒC" );
 				 fechaVw.setText(dia);
+				 imagenVw.setImageResource(imagen);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
