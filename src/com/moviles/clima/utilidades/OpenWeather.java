@@ -107,13 +107,13 @@ public class OpenWeather{
 	 * @return imagenId id de la imagen en forma de cadena;
 	 */
 	public String getImagen(String descripcion){
-		String exRegDespejado = "sol";
-		String exRegElectrica = "elec";
-		String exRegGranizo = "nie";
-		String exRegLlovizna = "llov";
-		String exRegLluvia = "lluv";
-		String exRegNiebla = "nieb";
-		String exRegNublado = "nubes";
+		String exRegDespejado = ".*cielo.*";
+		String exRegElectrica = ".*electrica.*";
+		String exRegGranizo = ".*nieve.*";
+		String exRegLlovizna = ".*llov.*";
+		String exRegLluvia = ".*lluv.*";
+		String exRegNiebla = ".*niebla.*";
+		String exRegNublado = ".*nubes.*";
 		
 		if(Pattern.matches(exRegDespejado, descripcion)){
 			return getDespejadoId().toString();
@@ -143,7 +143,7 @@ public class OpenWeather{
 			return getNubladoId().toString();
 		}
 		
-		return getDespejadoId().toString();
+		return getNubladoId().toString();
 	}
 
 	public Integer getDespejadoId() {
