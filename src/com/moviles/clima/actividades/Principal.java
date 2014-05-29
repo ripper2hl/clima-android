@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 import android.os.Build;
@@ -72,18 +73,16 @@ public class Principal extends Activity {
 			lati.setText(String.valueOf(ubic[0]));
 		    longi.setText(String.valueOf(ubic[1]));
 		    OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-			opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase
-		    
+			opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase    
 	    }
-	
-		
-	
 	}
 	
 	public void getClimaUbic(View view){
 		OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
 		opWeatherTask.execute(editText.getText().toString());//Ejecutamos toda la clase
-		vf.showNext();
+		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+	    inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+	    vf.showNext();
 	}
 	
 	public Double[] getGPS(){
@@ -97,7 +96,6 @@ public class Principal extends Activity {
 	       //longi.setText(String.valueOf(location.getLongitude()));
 	       location.getLongitude();
 	       return  new  Double []{location.getLatitude(),location.getLongitude()};
-
 	}
 	
 	
@@ -133,7 +131,6 @@ public class Principal extends Activity {
  
             return false;
         }
- 
     }
  
     private Animation inFromRightAnimation() {
@@ -141,12 +138,9 @@ public class Principal extends Activity {
         Animation inFromRight = new TranslateAnimation(
         Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
         Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f );
- 
         inFromRight.setDuration(500);
         inFromRight.setInterpolator(new AccelerateInterpolator());
- 
         return inFromRight;
- 
     }
  
     private Animation outToLeftAnimation() {
@@ -180,8 +174,5 @@ public class Principal extends Activity {
         outtoRight.setDuration(500);
         outtoRight.setInterpolator(new AccelerateInterpolator());
         return outtoRight;
-    }
-
-	
-		
+    }	
 }

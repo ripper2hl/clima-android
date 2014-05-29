@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/morado"
@@ -7,10 +7,12 @@
 
     <EditText
         android:id="@+id/ingresaCiudad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="71dp"
+        android:layout_x="17dp"
+        android:layout_y="96dp"
         android:ems="10"
-        android:text="" >
+        android:hint="Ingresa tu ubicacion" >
 
         <requestFocus />
     </EditText>
@@ -19,7 +21,9 @@
         android:id="@+id/button1"
         android:layout_width="94dp"
         android:layout_height="wrap_content"
-        android:text="Buscar"
-        android:onClick="getClimaUbic" />
- 
-</LinearLayout>
+        android:layout_x="108dp"
+        android:layout_y="172dp"
+        android:onClick="getClimaUbic"
+        android:text="Buscar" />
+
+</AbsoluteLayout>
