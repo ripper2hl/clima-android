@@ -1,5 +1,7 @@
 package com.moviles.clima.utilidades;
 
+import java.util.regex.Pattern;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -15,6 +17,28 @@ import org.json.JSONObject;
  *
  */
 public class OpenWeather{
+	
+	private Integer despejadoId;
+	private Integer electricaId;
+	private Integer granizoId;
+	private Integer lloviznaId;
+	private Integer lluviaId;
+	private Integer nieblaId;
+	private Integer nubladoId;
+
+	
+	public OpenWeather(Integer despejadoId, Integer electricaId,
+			Integer granizoId, Integer lloviznaId, Integer lluviaId,
+			Integer nieblaId, Integer nubladoId) {
+		super();
+		this.despejadoId = despejadoId;
+		this.electricaId = electricaId;
+		this.granizoId = granizoId;
+		this.lloviznaId = lloviznaId;
+		this.lluviaId = lluviaId;
+		this.nieblaId = nieblaId;
+		this.nubladoId = nubladoId;
+	}
 
 	/**
 	 * @author Jesus Perales
@@ -31,7 +55,8 @@ public class OpenWeather{
 			// Instanciamos el cliente
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			// Vamos por el json
-			String url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon+"&lang=sp";
+/*			String url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon+"&lang=sp";*/
+			String url = "http://clima-jesusisrael.rhcloud.com/clima/openweather/geo/?lat=" + lat + "&lon=" + lon+"&lang=sp&so=android";
 			HttpGet httpGet = new HttpGet(url);
 			response = httpClient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
@@ -60,7 +85,7 @@ public class OpenWeather{
 			// Instanciamos el cliente
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			// Vamos por el json
-			String url = "http://api.openweathermap.org/data/2.5/weather?q="+ ciudad + "&lang=sp";
+			String url = "http://clima-jesusisrael.rhcloud.com/clima/openweather/ciudad/?ciudad="+ ciudad + "&lang=sp&so=android";
 			HttpGet httpGet = new HttpGet(url);
 			response = httpClient.execute(httpGet);
 			result = EntityUtils.toString(response.getEntity());
@@ -73,5 +98,107 @@ public class OpenWeather{
 	    	 e.printStackTrace();
 	     }
 		return jsonObject;
+	}
+	
+	/**
+	 * Regresa el nombre de la imagen segun sea la descripcion del 
+	 * clima que se obtuvo de la consulta
+	 * @param descripcion estado del clima
+	 * @return imagenId id de la imagen en forma de cadena;
+	 */
+	public String getImagen(String descripcion){
+		String exRegDespejado = "sol";
+		String exRegElectrica = "elec";
+		String exRegGranizo = "nie";
+		String exRegLlovizna = "llov";
+		String exRegLluvia = "lluv";
+		String exRegNiebla = "nieb";
+		String exRegNublado = "nubes";
+		
+		if(Pattern.matches(exRegDespejado, descripcion)){
+			return getDespejadoId().toString();
+		}
+		
+		if(Pattern.matches(exRegElectrica, descripcion)){
+			return getElectricaId().toString();
+		}
+		
+		if(Pattern.matches(exRegGranizo, descripcion)){
+			return getGranizoId().toString();
+		}
+		
+		if(Pattern.matches(exRegLlovizna, descripcion)){
+			return getLloviznaId().toString();
+		}
+		
+		if(Pattern.matches(exRegLluvia, descripcion)){
+			return getLluviaId().toString();
+		}
+		
+		if(Pattern.matches(exRegNiebla, descripcion)){
+			return getNieblaId().toString();
+		}
+		
+		if(Pattern.matches(exRegNublado, descripcion)){
+			return getNubladoId().toString();
+		}
+		
+		return getDespejadoId().toString();
+	}
+
+	public Integer getDespejadoId() {
+		return despejadoId;
+	}
+
+	public void setDespejadoId(Integer despejadoId) {
+		this.despejadoId = despejadoId;
+	}
+
+	public Integer getElectricaId() {
+		return electricaId;
+	}
+
+	public void setElectricaId(Integer electricaId) {
+		this.electricaId = electricaId;
+	}
+
+	public Integer getGranizoId() {
+		return granizoId;
+	}
+
+	public void setGranizoId(Integer granizoId) {
+		this.granizoId = granizoId;
+	}
+
+	public Integer getLloviznaId() {
+		return lloviznaId;
+	}
+
+	public void setLloviznaId(Integer lloviznaId) {
+		this.lloviznaId = lloviznaId;
+	}
+
+	public Integer getLluviaId() {
+		return lluviaId;
+	}
+
+	public void setLluviaId(Integer lluviaId) {
+		this.lluviaId = lluviaId;
+	}
+
+	public Integer getNieblaId() {
+		return nieblaId;
+	}
+
+	public void setNieblaId(Integer nieblaId) {
+		this.nieblaId = nieblaId;
+	}
+
+	public Integer getNubladoId() {
+		return nubladoId;
+	}
+
+	public void setNubladoId(Integer nubladoId) {
+		this.nubladoId = nubladoId;
 	}
 }
