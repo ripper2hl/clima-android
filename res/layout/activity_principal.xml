@@ -103,6 +103,4 @@
         android:layout_x="37dp"
         android:layout_y="52dp"
         android:text="TextView" />
-
-
 </LinearLayout>

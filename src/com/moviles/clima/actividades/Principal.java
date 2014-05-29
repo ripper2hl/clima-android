@@ -16,6 +16,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 import android.support.v4.app.Fragment;
 import android.app.Activity;
@@ -52,32 +53,33 @@ public class Principal extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
-		 
-        vf = (ViewFlipper) findViewById(R.id.viewFlipper);
- 
-        vf.setOnTouchListener(new ListenerTouchViewFlipper());
-	    fecha = (TextView)findViewById(R.id.fecha);
-		lati = (TextView)findViewById(R.id.textLati);
-		longi = (TextView)findViewById(R.id.textLongi);
-		fecha.setText("Viernes");
-		//Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
-	    editText = (EditText)findViewById(R.id.ingresaCiudad);
-		//OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-		//opWeatherTask.execute("toronto");//Ejecutamos toda la clase
-		ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
-		imageView.setImageResource(R.drawable.despejado);
 		
-	    if(editText.getText().toString().matches("")){
-	    	Double ubic[]=getGPS();//Sacomos las coordenadas
-			lati.setText(String.valueOf(ubic[0]));
-		    longi.setText(String.valueOf(ubic[1]));
-		    OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
-			opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase
-		    
-	    }
-	
-		
-	
+		try{
+	        vf = (ViewFlipper) findViewById(R.id.viewFlipper);
+	        
+	        vf.setOnTouchListener(new ListenerTouchViewFlipper());
+		    fecha = (TextView)findViewById(R.id.fecha);
+			lati = (TextView)findViewById(R.id.textLati);
+			longi = (TextView)findViewById(R.id.textLongi);
+			fecha.setText("Viernes");
+			//Toast.makeText(getApplicationContext(),"Toast por defecto", Toast.LENGTH_SHORT).show();
+		    editText = (EditText)findViewById(R.id.ingresaCiudad);
+			//OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+			//opWeatherTask.execute("toronto");//Ejecutamos toda la clase
+			ImageView imageView = (ImageView)findViewById(R.id.imagenClima);
+			imageView.setImageResource(R.drawable.despejado);
+			
+		    if(editText.getText().toString().matches("")){
+		    	Double ubic[]=getGPS();//Sacomos las coordenadas
+				lati.setText(String.valueOf(ubic[0]));
+			    longi.setText(String.valueOf(ubic[1]));
+			    OpenWeatherTask opWeatherTask = new OpenWeatherTask(this);
+				opWeatherTask.execute(String.valueOf(ubic[0]),String.valueOf(ubic[1]));//Ejecutamos toda la clase
+			    
+		    }
+		}catch(Exception ex){
+			Toast.makeText(getApplicationContext(),"Algo malo paso", Toast.LENGTH_SHORT).show();
+		}	
 	}
 	
 	public void getClimaUbic(View view){

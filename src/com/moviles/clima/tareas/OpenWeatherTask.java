@@ -49,7 +49,7 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 			Conversion conversion = new Conversion();//Convertimos de K a C
 			Dia dia = new Dia();
 			
-			 if(params[1] != null){
+			 if(params.length > 1){
 				Double lati=Double.valueOf(params[0]);
 				Double longi=Double.valueOf(params[1]);
 				respuesta = openWeather.getData(lati,longi);//Mandamos las cordenadas para que nos retorne el clima
@@ -88,11 +88,11 @@ public class OpenWeatherTask extends AsyncTask<String, JSONObject, String[]> {
 				 resultados[6] = openWeather.getImagen(desc);
 			} catch (JSONException e) {
 				e.printStackTrace();
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return resultados;
 	}
 	
